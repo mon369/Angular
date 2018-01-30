@@ -1,0 +1,100 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{employee.FirstName}} {{employee.LastName}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <form (ngSubmit)="onSubmit()">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="FirstName">First Name:</label>
+                <input class="form-control" id="FirstName" type="text"  name="FirstName" [(ngModel)]="employee.FirstName"/>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="LastName">Last Name:</label>
+                <input class="form-control" id="LastName" type="text" name="LastName" [(ngModel)]="employee.LastName"/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Position">Position:</label>
+                
+                <select class="form-control" id="Position"  name="Position" [(ngModel)]="employee.Position">
+                  <option *ngFor="let position of positions" [value]="position._id"  >{{position.PositionName}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="SalaryBonus">Salary Bonus</label>
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input class="form-control" id="SalaryBonus" type="text" name="SalaryBonus" [(ngModel)]="employee.SalaryBonus"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="AddressStreet">Address (Street):</label>
+                <input class="form-control" id="AddressStreet" type="text" name="AddressStreet" [(ngModel)]="employee.AddressStreet"/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="AddressCity">Address (City):</label>
+              <input class="form-control" id="AddressCity" type="text" name="AddressCity" [(ngModel)]="employee.AddressCity"/>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="AddressState">Address (State):</label>
+                <input class="form-control" id="AddressState" type="text" name="AddressState" [(ngModel)]="employee.AddressState"/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="AddressZip">Address (Zip Code):</label>
+                <input class="form-control" id="AddressZip" type="text" name="AddressZip" [(ngModel)]="employee.AddressZip"/>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="PhoneNum">Phone Number:</label>
+                <input class="form-control" id="PhoneNum" type="text" name="PhoneNum" [(ngModel)]="employee.PhoneNum"/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Extension">Extension:</label>
+                <input class="form-control" id="Extension" type="text" name="Extension" [(ngModel)]="employee.Extension" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="HireDate">Hire Date:</label>
+                <input class="form-control" id="HireDate" name="HireDate" type="text" [value]="employee.HireDate | amDateFormat:'LL'" readonly >
+              </div>
+            </div>
+          </div>
+          <hr />
+          <a routerLink="/employees" class="btn btn-warning pull-left">Return to Employee List</a>
+          <input type="submit" class="btn btn-primary pull-right" value="Update Employee" />
+          <br />
+          <br />
+        </form>
+      </div>
+    </div>
+    <br />
+    <div class="alert alert-success" *ngIf="successMessage">
+      <strong>Success!</strong> {{employee.FirstName}} {{employee.LastName}}'s information was successfully saved.
+    </div>
+  </div>
+</div>
